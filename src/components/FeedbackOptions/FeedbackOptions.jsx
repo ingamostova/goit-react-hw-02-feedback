@@ -1,13 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 import PropTypes from 'prop-types';
 
-export const OptionList = ({ options, onClick }) => {
+export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <div>
       {options.map(option => {
         return (
           <div>
-            <button type="button" onBtnClick={() => onClick(option)}>
+            <button type="button" onClick={() => onLeaveFeedback(option)}>
               {option}
             </button>
           </div>
@@ -17,6 +17,6 @@ export const OptionList = ({ options, onClick }) => {
   );
 };
 
-OptionList.propTypes = {
+FeedbackOptions.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string),
 };

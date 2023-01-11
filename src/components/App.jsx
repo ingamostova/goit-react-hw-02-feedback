@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Title } from './Title/Title';
-import { OptionList } from './OptionList/OptionList';
+import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
 
 export class App extends Component {
@@ -23,9 +23,9 @@ export class App extends Component {
       <div>
         <Title title="Please leave feedback" />
 
-        <OptionList
+        <FeedbackOptions
           options={Object.keys(this.state)}
-          onClick={this.addFeedback}
+          onLeaveFeedback={this.addFeedback}
         />
 
         <Statistics
@@ -33,6 +33,8 @@ export class App extends Component {
           good={good}
           neutral={neutral}
           bad={bad}
+          total={0}
+          positivePercentage={0}
         />
       </div>
     );
