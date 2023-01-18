@@ -1,13 +1,12 @@
-// eslint-disable-next-line no-unused-vars
 import PropTypes from 'prop-types';
 import { List, Btn } from './FeedbackOptions.styled';
 
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <List>
-      {options.map((option, idx) => {
+      {options.map(option => {
         return (
-          <li key={idx}>
+          <li key={option}>
             <Btn type="button" onClick={() => onLeaveFeedback(option)}>
               {option}
             </Btn>

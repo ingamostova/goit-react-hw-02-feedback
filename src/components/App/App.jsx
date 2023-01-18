@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { FeedbackOptions } from '../FeedbackOptions/FeedbackOptions';
 import { Statistics } from '../Statistics/Statistics';
@@ -18,37 +16,42 @@ export class App extends Component {
     this.setState(prevState => ({ [feedback]: prevState[feedback] + 1 }));
   };
 
-  countTotalFeedback = (good, neutral, bad) => {
+  countTotalFeedback = () => {
+    const { good, neutral, bad } = this.state;
     return good + neutral + bad;
   };
 
-  countPositiveFeedbackPercentage = (good, total) => {
-    return good / total;
+  countPositiveFeedbackPercentage = () => {
+    const { state, countTotalFeedback } = this;
+    return Math.round((state.good / countTotalFeedback()) * 100);
   };
 
   render() {
     const { good, neutral, bad } = this.state;
+    const {
+      state,
+      addFeedback,
+      countTotalFeedback,
+      countPositiveFeedbackPercentage,
+    } = this;
 
     return (
       <Container>
         <Section title="Please leave feedback">
           <FeedbackOptions
-            options={Object.keys(this.state)}
-            onLeaveFeedback={this.addFeedback}
+            options={Object.keys(state)}
+            onLeaveFeedback={addFeedback}
           />
         </Section>
 
         <Section title="Statistics">
-          {good || neutral || bad ? (
+          {countTotalFeedback() ? (
             <Statistics
               good={good}
               neutral={neutral}
               bad={bad}
-              total={this.countTotalFeedback(good, neutral, bad)}
-              positivePercentage={this.countPositiveFeedbackPercentage(
-                good,
-                good + neutral + bad
-              )}
+              total={countTotalFeedback()}
+              positivePercentage={countPositiveFeedbackPercentage()}
             />
           ) : (
             <Notification message="There is no feedback" />

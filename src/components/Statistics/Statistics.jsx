@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import PropTypes from 'prop-types';
 import { Feedback, Wrapper } from './Statistics.styled';
 
@@ -16,9 +15,7 @@ export const Statistics = ({
         <Feedback>Neutral: {neutral}</Feedback>
         <Feedback>Bad: {bad}</Feedback>
         <Feedback>Total: {total}</Feedback>
-        <Feedback>
-          Positive Feedback: {(positivePercentage * 100).toFixed()}%
-        </Feedback>
+        <Feedback>Positive Feedback: {positivePercentage}%</Feedback>
       </Wrapper>
     </>
   );
